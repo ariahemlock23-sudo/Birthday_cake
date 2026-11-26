@@ -1,0 +1,328 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.title-font {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.body-font {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  color: #e8f8ff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: linear-gradient(
+    180deg,
+    #07142b 0%,
+    #0f2b57 38%,
+    #1b4d89 72%,
+    #2d74b8 100%
+  );
+  position: relative;
+}
+
+#fireworksCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Layer 1 Intro */
+.intro-screen {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.intro-box {
+  background: radial-gradient(
+      circle at 50% 0%,
+      rgba(95, 222, 255, 0.16),
+      transparent 65%
+    ),
+    rgba(9, 27, 57, 0.9);
+  border: 2px solid #9be7ff;
+  border-radius: 20px;
+  padding: 36px 28px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow:
+    0 0 34px rgba(115, 224, 255, 0.34),
+    inset 0 0 20px rgba(180, 238, 255, 0.12);
+  animation: popIn 0.5s ease-out;
+}
+
+.intro-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  color: #c9f3ff;
+  background: rgba(20, 62, 114, 0.75);
+  border: 1px solid rgba(155, 231, 255, 0.55);
+  margin-bottom: 14px;
+}
+
+.intro-heading {
+  font-size: clamp(1.75rem, 4.5vw, 2.45rem);
+  font-weight: 700;
+  color: #dff7ff;
+  text-shadow: 0 0 16px rgba(126, 226, 255, 0.72);
+  margin-bottom: 10px;
+  line-height: 1.22;
+}
+
+.intro-note {
+  font-size: clamp(0.98rem, 2.3vw, 1.12rem);
+  font-weight: 500;
+  color: #bceeff;
+  margin-bottom: 24px;
+}
+
+/* Buttons */
+.action-btn,
+.small-btn,
+.note-trigger-btn {
+  cursor: pointer;
+  color: #071933;
+  font-weight: 700;
+  background: linear-gradient(180deg, #dff8ff 0%, #8ad8ff 55%, #5ab6f0 100%);
+  border: 2px solid #e9fbff;
+  border-radius: 10px;
+  box-shadow: 0 4px 0 #184a82, 0 0 16px rgba(138, 216, 255, 0.5);
+  transition: transform 0.14s ease, filter 0.14s ease;
+}
+
+.action-btn {
+  padding: 13px 24px;
+  font-size: clamp(0.95rem, 2.2vw, 1.08rem);
+}
+
+.small-btn {
+  padding: 7px 14px;
+  font-size: clamp(0.78rem, 1.8vw, 0.88rem);
+}
+
+.note-trigger-btn {
+  padding: 10px 22px;
+  font-size: clamp(0.86rem, 2vw, 0.98rem);
+}
+
+.action-btn:hover,
+.small-btn:hover,
+.note-trigger-btn:hover {
+  filter: brightness(1.07);
+  transform: translateY(-2px);
+}
+
+.action-btn:active,
+.small-btn:active,
+.note-trigger-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #184a82;
+}
+
+/* Layer 2 Celebration: Everything centered in 100dvh without scroll */
+.celebration-screen {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100dvh;
+  padding: 10px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.top-header {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.main-heading {
+  font-size: clamp(1.35rem, 3.6vw, 2.05rem);
+  font-weight: 700;
+  color: #e6f9ff;
+  text-shadow: 0 0 16px rgba(130, 226, 255, 0.8);
+  line-height: 1.2;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.lyric-box {
+  min-height: 24px;
+  font-size: clamp(0.92rem, 2.1vw, 1.1rem);
+  font-weight: 500;
+  color: #bceeff;
+  text-shadow: 0 0 10px rgba(102, 214, 255, 0.75);
+}
+
+/* Miku Pixel Canvas - A bit bigger */
+.miku-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -95px; /* Adjusted for the larger canvas */
+  z-index: 3;
+  pointer-events: none;
+}
+
+.miku-float {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: mikuBob 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(85, 224, 255, 0.55));
+  cursor: pointer;
+}
+
+#mikuPixelCanvas {
+  width: clamp(270px, 40vh, 370px);
+  height: clamp(270px, 40vh, 370px);
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Pixel Apple Pie Cake with 18 Candles */
+.cake-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pie-float {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  filter: drop-shadow(0 0 14px rgba(255, 198, 112, 0.35));
+  animation: cakePulse 3.6s ease-in-out infinite;
+}
+
+#applePieCanvas {
+  width: clamp(250px, 42vh, 360px);
+  max-width: 92vw;
+  height: auto;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Note Trigger Area */
+.note-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centered Pop-Up Note Modal */
+.note-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(5, 15, 32, 0.52);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.note-modal-card {
+  position: relative;
+  max-width: 560px;
+  width: 100%;
+  background: rgba(10, 29, 60, 0.96);
+  border: 2.5px solid #9be7ff;
+  border-radius: 16px;
+  padding: 24px 22px 20px;
+  box-shadow: 0 0 36px rgba(125, 224, 255, 0.55), inset 0 0 18px rgba(173, 235, 255, 0.16);
+  animation: popIn 0.22s ease-out;
+}
+
+.note-text {
+  font-size: clamp(0.98rem, 2.2vw, 1.15rem);
+  font-weight: 500;
+  line-height: 1.65;
+  color: #effaff;
+  text-align: center;
+}
+
+.note-hint {
+  margin-top: 12px;
+  text-align: center;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #9be7ff;
+  opacity: 0.9;
+}
+
+/* Animations */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes mikuBob {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes cakePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+}
