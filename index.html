@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy 18th Birthday, Tulga</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="Design.css" />
+</head>
+<body>
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Layer 1: Intro -->
+  <section id="introScreen" class="intro-screen">
+    <div class="intro-box">
+      <div class="intro-badge title-font">✦ LEVEL 18 ✦</div>
+      <h1 class="title-font intro-heading">Happy 18th Birthday, Tulga</h1>
+      <p class="body-font intro-note">
+        Tap below to open your birthday celebration.
+      </p>
+      <button id="openCakeBtn" class="title-font action-btn" type="button">
+        Open Your Birthday Cake
+      </button>
+    </div>
+  </section>
+
+  <!-- Layer 2: Celebration -->
+  <main id="celebrationScreen" class="celebration-screen hidden">
+    <header class="top-header">
+      <h2 class="title-font main-heading">Happy 18th Birthday, Tulga</h2>
+      <div class="controls">
+        <button id="songBtn" class="title-font small-btn" type="button">
+          Sing Song
+        </button>
+        <button id="blowBtn" class="title-font small-btn" type="button">
+          Blow All 18 Candles
+        </button>
+        <button id="relightBtn" class="title-font small-btn" type="button">
+          Relight Candles
+        </button>
+      </div>
+      <div id="lyricBox" class="body-font lyric-box">
+        Happy birthday to you...
+      </div>
+    </header>
+
+    <!-- Chunky Pixel Miku Centerpiece -->
+    <section class="miku-area" aria-label="Pixel Hatsune Miku">
+      <div class="miku-float">
+        <canvas id="mikuPixelCanvas" width="240" height="240"></canvas>
+      </div>
+    </section>
+
+    <!-- Pixel Apple Pie Cake with 18 Candles -->
+    <section class="cake-area" aria-label="Pixel apple pie birthday cake with 18 candles">
+      <div class="pie-float" title="Click pie to toggle candles">
+        <canvas id="applePieCanvas" width="320" height="220"></canvas>
+      </div>
+    </section>
+
+    <!-- Trigger Button Under the Cake -->
+    <section class="note-area" aria-label="Birthday note trigger">
+      <button id="openNoteBtn" class="title-font note-trigger-btn" type="button">
+        ✉ Read Birthday Note
+      </button>
+    </section>
+  </main>
+
+  <!-- Centered Pop-Up Birthday Note Modal -->
+  <div id="noteModalBackdrop" class="note-modal-backdrop hidden" aria-hidden="true">
+    <article
+      id="noteModalCard"
+      class="note-modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Birthday message"
+    >
+      <p id="noteText" class="body-font note-text">
+        Happy 18th birthday, Tulga. Thank you for spending this year with me. I wish you the best, and I'm sorry for the bitter memories I've shared with you or caused you. This is the first gift I've been able to make since the other plan didn't work out well. I don't know if this will be the last time as well, but I hope you like it.
+      </p>
+      <p class="note-hint">Click anywhere outside the note to close ♪</p>
+    </article>
+  </div>
+
+  <script src="Java.js"></script>
+</body>
+</html>
